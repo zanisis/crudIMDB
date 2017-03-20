@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IMDB</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <h1 style="text-align:center">IMDB Lokal</h1>
+    <hr>
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+        </thead>
+        <tbody>
+          <% movies.forEach( function(movie) { %>
+          <tr>
+              <td><%= movie.id %></td>
+              <td><a href="/votes/<%= movie.id %>"><%= movie.judul %></a></td>
+            <% }) %>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

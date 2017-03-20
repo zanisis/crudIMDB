@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IMDB</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <h1 style="text-align:center">IMDB Lokal</h1>
+    <hr>
+    <%=   movie.id %></br>
+    <%=   movie.judul %></br>
+    <%=   movie.isi %></br></br></br>
+    <form action="" method="post">
+      <name="movieId" value= <%   movie.id %>>
+      Input Your Name : <input type"text" name="inputname"></br></br>
+      Input Your Rating : <input type="radio" name="vote" value=5>5
+      <input type="radio" name="vote" value=4>4
+      <input type="radio" name="vote" value=3>3
+      <input type="radio" name="vote" value=2>2
+      <input type="radio" name="vote" value=1>1</br></br>
+      <input type="submit" value="SUBMIT">
+    </form>
+
+</body>
+</html>
