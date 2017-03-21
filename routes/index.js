@@ -53,7 +53,7 @@ router.post('/create',function (req, res, next) {
     })
 })
 
-router.get('/create/:id',function (req, res, next) {
+router.get('/delete/:id',function (req, res, next) {
   db.Movie.destroy({
     where: {id: req.params.id}
   })
