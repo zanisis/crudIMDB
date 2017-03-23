@@ -1,12 +1,12 @@
 {
-
     "development": {
         "username": "postgres",
         "password": "1234",
         "database": "dbmovies",
         "host": "127.0.0.1",
         "port": "5432",
-        "dialect": "postgres"
+        "dialect": "postgres",
+        "logging": false
     },
     "test": {
         "username": "root",

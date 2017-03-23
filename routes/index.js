@@ -8,10 +8,35 @@ var app = express()
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
-  db.Movie.findAll({models: {order:'id ASC'}})
-          .then(function (_movies){
-            res.render('index', { movies:_movies});//cacth error blm ngerti
+  db.Movie.findAll()
+  .then(function (_movies){
+    var promises = []
+    _movies.forEach(function(_movie) {
+      var p = new Promise(function(resolve, reject) {
+        _movie.getVotes()
+        .then(function (_votes){
+          let totalScores=0; let jumlahVoters=0;
+          _votes.forEach(function (vote){
+            totalScores += vote.vote
+            jumlahVoters++;
           })
+          let avg = totalScores / jumlahVoters
+          _movie["rata"] = avg;
+          resolve(_movie)
+        })
+        .catch(function(err) {
+          reject(err)
+        })
+      })
+      promises.push(p)
+    })
+
+    Promise.all(promises)
+    .then(function() {
+      res.render('index', { movies :_movies});
+    })
+
+  })
 });
 
 router.get('/admin', function(req, res, next) {
@@ -48,18 +73,17 @@ router.get('/delete/:id',function (req, res, next) {
 
 router.get('/update/:id',function (req, res, next) {
   db.Movie.findById(req.params.id)
-          .then(function (_movie){
-            res.render('update',
-              {
-                tittle: 'Page Update',
-                movie : _movie
-              }
-            );
-          })
+    .then(function (_movie){
+      res.render('update',
+        {
+          tittle: 'Page Update',
+          movie : _movie
+        }
+      );
+    })
 })
 
 router.post('/update/:id',function (req, res, next) {
-  // res.send('test')
   let params = req.params.id
   db.Movie
     .update({

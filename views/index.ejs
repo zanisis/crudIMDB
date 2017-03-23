@@ -11,15 +11,17 @@
     <table>
         <thead>
             <th>Id</th>
-            <th>Name</th>
+            <th>Judul Movie</th>
+            <th>Rating</th>
         </thead>
         <tbody>
           <% movies.forEach( function(movie) { %>
           <tr>
               <td><%= movie.id %></td>
               <td><a href="/votes/<%= movie.id %>"><%= movie.judul %></a></td>
-            <% }) %>
+              <td><%= movie.rata %></td>
             </tr>
+          <% }) %>
         </tbody>
     </table>
 </body>
