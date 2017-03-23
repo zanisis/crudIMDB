@@ -3,24 +3,58 @@
 
 <head>
     <title>IMDB</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
+    <link rel='stylesheet' href='/stylesheets/form.css' />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1 style="text-align:center">IMDB Lokal</h1>
-    <hr>
-    <%=   movie.id %></br>
-    <%=   movie.judul %></br>
-    <%=   movie.isi %></br></br></br>
-    <form action="/votes/<%= movie.id %>" method="post">
-      <name="movieId" value= <%   movie.id %>>
-      Input Your Name : <input type"text" name="inputname"></br></br>
-      Input Your Rating : <input type="radio" name="vote" value=5>5
-      <input type="radio" name="vote" value=4>4
-      <input type="radio" name="vote" value=3>3
-      <input type="radio" name="vote" value=2>2
-      <input type="radio" name="vote" value=1>1</br></br>
-      <input type="submit" value="SUBMIT">
-    </form>
 
+<div id="contact-form">
+	<div>
+		<h1 class="required">Nice to Meet You!</h1>
+		<h4 class="required">Tolong Berikan Vote Pada FILM ini YA!!</h4>
+	</div>
+	   <form method="post" action="/votes/<%= movie.id %>">
+			<div>
+		      <label for="name">
+		      	<span class="required">Film: *</span>
+		      	<input type="text" id="name" name="name" value="" placeholder="<%= movie.id %>" tabindex="1" autofocus="autofocus" disabled />
+		      </label>
+			</div>
+      <div>
+          <label for="message">
+            <span class="required">Synopsis: *</span>
+            <textarea id="message" name="message" placeholder="<%= movie.judul %>" tabindex="5" disabled></textarea>
+          </label>
+      </div>
+      <div>
+        <label for="vote">
+          <span class="required">Give Rating: *</span>
+            <select id="vote" name="vote">
+              <option name="vote" value=5>5</option>
+              <option name="vote" value=4>4</option>
+              <option name="vote" value=3>3</option>
+              <option name="vote" value=2>2</option>
+              <option name="vote" value=1>1</option>
+            </select>
+        </label>
+      </div>
+    <div>
+        <label for="user">
+          <span class="required">User Name: *</span>
+          <select name=userId>
+            <% users.forEach((user) => { %>
+              <option value="<%=user.id%>" name="id" ><%= user.name %></option>
+            <% }) %>
+          </select>
+        </label>
+      </div>
+			<div>
+		      <button name="submit" type="submit" id="submit" >SEND</button>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

@@ -4,30 +4,56 @@
 <head>
     <title>IMDB</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-<body>
-    <h1 style="text-align:center">IMDB Lokal</h1>
-    <hr>
-    <table>
-        <thead>
-            <th>Id</th>
-            <th>Judul Movie</th>
-            <th>Rating</th>
-        </thead>
-        <tbody>
-          <% movies.forEach((movie) => { %>
-          <tr>
-              <td><%= movie.id %></td>
-              <td><a href="/votes/<%= movie.id %>"><%= movie.judul %></a></td>
-              <% if(movie.rata) { %>
-                <td><%= movie.rata.toFixed(1) %></td>
-              <% } else { %>
-                <td>0</td>
-                <%} %>
-            </tr>
-          <% }) %>
-        </tbody>
-    </table>
-</body>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
 
-</html>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Table Style</title>
+        <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+    </head>
+
+    <body>
+        <div class="table-title">
+            <h3>List Movies Table</h3>
+        </div>
+        <table class="table-fill">
+            <thead>
+                <tr>
+                    <th class="text-left">No</th>
+                    <th class="text-left">Movies</th>
+                    <th class="text-left">Rating</th>
+                    <th class="text-left" style="text-align:center">Vote</th>
+                </tr>
+            </thead>
+            <tbody class="table-hover">
+                <%let count = 1%>
+                    <% movies.forEach((movie) => { %>
+                        <tr>
+                            <td class="text-left">
+                                <%=count%>
+                            </td>
+                            <td class="text-left">
+                                <%= movie.judul %>
+                            </td>
+                            <% if(movie.rata) { %>
+                                <td>
+                                <%= movie.rata.toFixed(1) %>
+                                </td>
+                            <%} else { %>
+                                <td>0</td>
+                            <%}%>
+                                <td class="text-left" style="text-align:center"><input type="submit" name="" value="Gift Vote" onclick="location.href='/votes/<%=movie.id%>';"></td>
+                        </tr>
+                        <%count++}) %>
+
+            </tbody>
+        </table>
+    </body>
+
+    </html>

@@ -3,34 +3,74 @@
 
 <head>
     <title>IMDB</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/admin.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1 style="text-align:center"><%= tittle %></h1>
-    <hr>
-    <table>
-        <thead>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Change</th>
-        </thead>
-        <tbody>
-          <% movies.forEach( function(movie) { %>
-          <tr>
-              <td><%= movie.id %></td>
-              <td><a href="/votes/<%= movie.id %>"><%= movie.judul %></a></td>
-              <td>
-                <input type="submit" name="" value="Edit" onclick="location.href='/update/<%= movie.id%>'">
-                <a href="/delete/<%= movie.id%>"><input type="submit" name="" value="Remove" onclick="return confirm('Are You Sure')"></a>
-              </td>
-            <% }) %>
-            </tr>
-        </tbody>
-    </table>
-    <!-- <form class="" action="/create.html" method="post"> -->
-      <button type="submit" name="button" onclick="window.location.href='/create';">Create</button>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">Admin Teritory</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <form action="/" class="navbar-form navbar-right">
 
-    <!-- </form> -->
+              <button type="submit" class="btn btn-success">Logout</button>
+            </form>
+          </div><!--/.navbar-collapse -->
+        </div>
+      </nav>
+      <br>
+      <div id="demo">
+        <h1>Table Movies</h1>
+
+        <!-- Responsive table starts here -->
+        <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
+        <div class="table-responsive-vertical shadow-z-1">
+        <!-- Table starts here -->
+        <table id="table" class="table table-hover table-mc-light-blue">
+            <thead>
+              <tr>
+                <th style="text-align:center">No</th>
+                <th style="text-align:center">Name</th>
+          <%# <--   <th style="text-align:center">Link</th> -->%>
+                <th style="text-align:center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% let count=1%>
+              <% movies.forEach((movie)=>{ %>
+              <tr>
+                <td data-title="ID" style="text-align:center"><%=count%></td>
+                <td data-title="Name" style="text-align:center"><%= movie.judul %></td>
+        <!--  <td data-title="Link" style="text-align:center">
+                  <a rel="nofollow" rel="noreferrer"href="/votes/<%= movie.id %>"><input type="submit" name="" value="Vote"></a>
+                </td> -->
+                <td data-title="Status" style="text-align:center">
+                  <input type="submit" name="" value="Edit" onclick="location.href='/update/<%= movie.id%>'">
+                  <a href="/delete/<%= movie.id%>"><input type="submit" name="" value="Remove" onclick="return confirm('Are You Sure')"></a>
+                </td>
+                <%count++ }) %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button style="float:right" type="submit" name="button" onclick="window.location.href='/create';">Add Movie</button>
+
+      <!-- Table Constructor change table classes, you don't need it in your project -->
+      </div>
+      <br>
+
+
+
+
 </body>
 
 </html>

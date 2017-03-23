@@ -6,7 +6,6 @@ var express = require('express')
 var app = express()
 
 /* GET home page. */
-
 router.get('/', function(req, res, next) {
   db.Movie.findAll()
   .then(function (_movies){
@@ -33,13 +32,13 @@ router.get('/', function(req, res, next) {
 
     Promise.all(promises)
     .then(function() {
-      // console.log(_movies.rata);
       res.render('index', { movies :_movies});
     })
 
   })
 });
 
+/*Get Home page ADMIN*/
 router.get('/admin', function(req, res, next) {
   db.Movie.findAll()
     .then(function (_movies){
@@ -98,5 +97,7 @@ router.post('/update/:id',function (req, res, next) {
       res.send(err.message)
     })
 })
-
+router.get('/admin2',function (req, res, next) {
+  res.render('admin2')
+})
 module.exports = router;
