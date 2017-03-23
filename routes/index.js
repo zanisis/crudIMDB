@@ -33,6 +33,7 @@ router.get('/', function(req, res, next) {
 
     Promise.all(promises)
     .then(function() {
+      // console.log(_movies.rata);
       res.render('index', { movies :_movies});
     })
 

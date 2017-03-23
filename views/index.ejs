@@ -15,11 +15,15 @@
             <th>Rating</th>
         </thead>
         <tbody>
-          <% movies.forEach( function(movie) { %>
+          <% movies.forEach((movie) => { %>
           <tr>
               <td><%= movie.id %></td>
               <td><a href="/votes/<%= movie.id %>"><%= movie.judul %></a></td>
-              <td><%= movie.rata %></td>
+              <% if(movie.rata) { %>
+                <td><%= movie.rata.toFixed(1) %></td>
+              <% } else { %>
+                <td>0</td>
+                <%} %>
             </tr>
           <% }) %>
         </tbody>

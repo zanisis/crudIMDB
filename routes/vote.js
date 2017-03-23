@@ -12,35 +12,21 @@ router.get('/:id', function(req, res, next) {
 
 //NGEVOTE SEBUAH FILM... NAMA SESEORANG HARUS ADA DALAM DB
 router.post('/:id', function(req, res, next) {
-  db.User.findOne({ where: { name : req.body.inputname } })
-          .then(function (_user) {
-            let nilaiVote = {
-              vote : req.body.vote,
-              MovieId : req.params.id,
-              UserId : _user.id
-            }
-            db.Vote.create(nilaiVote)
-              .then(()=>{
-                db.Movie.findAll()
-                  .then(function (_movies){
-                    res.redirect('index', { movies:_movies});
-                  })
-                  .catch((err)=>{
-                    res.send(err.message)
-                  })
-              })
-              .catch((err) => {
-                      db.Movie.findAll()
-                        .then(function (_movies){
-                          res.render('index', { movies:_movies});
-                        })
-              })
-
-          })
-          .catch((err) => {
-            res.sen(err.message)
-          })
-
+  db.User.findOne({where: {name: req.body.inputname}})
+    .then((_user)=>{
+      let nilaiVote = {
+        vote: req.body.vote,
+        MovieId: req.params.id,
+        UserId: _user.id
+      }
+      db.Vote.create(nilaiVote)
+        .then(()=>{
+          res.redirect('/')
+        })
+        .catch((err)=>{
+          res.send(err.message)
+        })
+    })
 });
 
 module.exports = router;
