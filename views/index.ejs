@@ -19,8 +19,8 @@
 
           <tr>
               <td><%= movie.id %></td>
-              <td><a href="/votes/<%= movie.id %>"><%= movie.judul %></a></td>
-              <td><%= movie.rata %></td>
+              <td><a href="/vote/<%= movie.id %>"><%= movie.judul %></a></td>
+              <td><%= movie.rata.toFixed(1) %></td>
             </tr>
 
           <% }) %>

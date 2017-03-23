@@ -15,8 +15,7 @@ router.get('/:id', function(req, res, next) {
 
 
 //NGEVOTE SEBUAH FILM... NAMA SESEORANG HARUS ADA DALAM DB
-router.post('/:id', function(req, res, next) {
-
+router.post('/add/:id', function(req, res, next) {
   db.User.findOne({ where: { name : req.body.inputname } })
           .then(function (_user) {
             let nilaiVote = {
@@ -28,7 +27,7 @@ router.post('/:id', function(req, res, next) {
                     .then(
                       db.Movie.findAll()
                               .then(function (_movies){
-                                res.riderect('index', { movies:_movies});
+                                res.redirect('index', { movies:_movies});
                                   })
                     )
 
@@ -36,19 +35,18 @@ router.post('/:id', function(req, res, next) {
                     .catch(function (err){
                       db.Movie.findAll()
                               .then(function (_movies){
-                                res.render('index', { movies:_movies});
-                                })
+                                res.redirect('index', { movies:_movies});
+                                  })
                     })
 
           })
 
           //GA ADA NAMANYA
           .catch(function (err){
-
             db.Movie.findAll()
                     .then(function (_movies){
-                      res.render('index', { movies:_movies});
-                      })
+                      res.redirect('index', { movies:_movies});
+                        })
           })
 
 });

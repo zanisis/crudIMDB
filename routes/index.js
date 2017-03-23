@@ -2,32 +2,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('../models');
 
-/* GET home page. */
-// router.get('/', function(req, res, next) {
-//   db.Movie.findById(1)
-//               .then(function (_movies){
-//                 _movies.getGenres()
-//                         .then(function(_genres){
-//                             //console.log(genre.genre)
-//                             res.render('index', { title: 'Expresso', movies:_movies, genres : _genres });
-//                         })
-//                         //cacth error blm ngerti
-//               })
-//
-// });
-
-// model.Teacher.findById(3)
-//             .then(function (teachers){
-//               teachers.getStudents()
-//                       .then(function(students){
-//                         students.forEach(function(student){
-//                           console.log(student.first_name+' '+student.last_name)
-//                         })
-//                       })
-//             })
-
-
-
 
 router.get('/', function(req, res, next) {
   db.Movie.findAll()
@@ -59,10 +33,8 @@ router.get('/', function(req, res, next) {
 
     Promise.all(promises)
     .then(function() {
-      console.log("-----",_movies);
       res.render('index', { movies :_movies});
     })
-
   })
 });
 

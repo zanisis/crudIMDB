@@ -11,7 +11,7 @@
     <%=   movie.id %></br>
     <%=   movie.judul %></br>
     <%=   movie.isi %></br></br></br>
-    <form action="" method="post">
+    <form action="/vote/add/<%= movie.id %>" method="post">
       <name="movieId" value= <%   movie.id %>>
       Input Your Name : <input type"text" name="inputname"></br></br>
       Input Your Rating : <input type="radio" name="vote" value=5>5
