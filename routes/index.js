@@ -32,7 +32,10 @@ router.get('/', function(req, res, next) {
 
     Promise.all(promises)
     .then(function() {
-      res.render('index', { movies :_movies});
+      db.Genre.findAll()
+        .then((_genres)=>{
+          res.render('index', { movies : _movies, genres : _genres});
+        })
     })
 
   })
@@ -50,7 +53,11 @@ router.get('/admin', function(req, res, next) {
 });
 
 router.get('/create', function(req, res, next) {
-res.render('create', {tittle: 'Create Movie'})
+  db.Genre.findAll()
+  .then((_genres)=>{
+    res.render('create', {tittle: 'Create Movie', genres :_genres})
+  })
+
 });
 
 router.post('/create',function (req, res, next) {
@@ -58,8 +65,21 @@ router.post('/create',function (req, res, next) {
     judul: req.body.tittle,
     isi: req.body.desc
   })
-    .then(()=>{
-      res.redirect('/admin')
+    .then((ins)=>{
+      let movie_id = ins.id;
+
+      let arrMovieGenre = [];
+      for(let i=0;i<req.body.genreCheckBox.length;i++){
+        arrMovieGenre.push({
+          MovieId : movie_id,
+          GenreId : req.body.genreCheckBox[i]
+        })
+      }
+      db.MovieGenre.bulkCreate(arrMovieGenre)
+      .then(function(){
+        res.redirect('/admin')
+      })
+
     })
 })
 
@@ -98,6 +118,27 @@ router.post('/update/:id',function (req, res, next) {
       res.send(err.message)
     })
 })
+
+router.get('/findbytag/:id',function (req, res, next) {
+  if(req.params.id==0){
+    res.redirect('/');
+  }
+  else {
+    db.MovieGenre.findAll( {
+      where : { GenreId : req.params.id },
+      include : [ db.Movie ]
+    })
+            .then(function (_movieGenres){
+              db.Genre.findAll()
+              .then(function (_genres){
+                res.render('listmovietag', { movieGenres : _movieGenres, genres : _genres, selected : req.params.id })
+              })
+            })
+  }
+})
+
+
+
 router.get('/admin2',function (req, res, next) {
   res.render('admin2')
 })

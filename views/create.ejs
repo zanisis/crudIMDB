@@ -30,6 +30,11 @@
             <textarea id="message" name="desc" placeholder="Input Your Synopsis" tabindex="5" ></textarea>
           </label>
       </div>
+      <div class="">
+        <% genres.forEach (function (genre){ %>
+          <input type="checkbox" name="genreCheckBox" value=<%=genre.id %> > <%=genre.genre%> <br>
+        <% }) %>
+      </div>
 			<div>
 		      <button name="submit" type="submit" id="submit" >SEND</button>
 			</div>
