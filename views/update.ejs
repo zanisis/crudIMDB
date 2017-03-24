@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IMDB</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1 style="text-align:center"><%= tittle %></h1>
+    <hr>
+    <form action="/update/<%= movie.id %>" method="post">
+        Tittle Film:<br>
+        <input size="40" type="text" name="tittle" value='<%= movie.judul%>' placeholder="input film"><br>
+        Description:<br>
+        <textarea name="desc" rows="8" cols="40"><%= movie.isi%></textarea><br>
+        <button type="submit" name="submit">Submit</button>
+    </form>
+</body>
+</html>

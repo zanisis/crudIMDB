@@ -2,53 +2,45 @@ var express = require('express');
 var router = express.Router();
 var db = require('../models');
 
-
-
 //MENGAMBIL FILM SESUAI ID DAN MEMBUAT TAB
 router.get('/:id', function(req, res, next) {
   db.Movie.findById(req.params.id)
           .then(function (_movie){
-            res.render('vote', { movie : _movie });
-              })
+              db.User.findAll()
+                     .then(function(_users){
+                       res.render('vote', { movie : _movie, users : _users});
+                     })
+    })
+});
+
+//NGEVOTE SEBUAH FILM... NAMA SESEORANG HARUS ADA DALAM DB
+router.post('/:id', function(req, res, next) {
+  // db.User.findOne({where: {name: req.body.inputname}})
+  //   .then((_user)=>{
+      let nilaiVote = {
+        vote: req.body.vote,
+        MovieId: req.params.id,
+        UserId: req.params.inputname
+      }
+      db.Vote.create(nilaiVote)
+        .then(()=>{
+          res.redirect('/')
+        })
+        .catch((err)=>{
+          res.send(err.message)
+        })
+    // })
 });
 
 
-
-//NGEVOTE SEBUAH FILM... NAMA SESEORANG HARUS ADA DALAM DB
-router.post('/add/:id', function(req, res, next) {
-  db.User.findOne({ where: { name : req.body.inputname } })
-          .then(function (_user) {
-            let nilaiVote = {
-              vote : req.body.vote,
-              MovieId : req.params.id,
-              UserId : _user.id
-            }
-            db.Vote.create(nilaiVote)
-                    .then(
-                      db.Movie.findAll()
-                              .then(function (_movies){
-                                res.redirect('index', { movies:_movies});
-                                  })
-                    )
-
-                    //GA ADA NILAINYA
-                    .catch(function (err){
-                      db.Movie.findAll()
-                              .then(function (_movies){
-                                res.redirect('index', { movies:_movies});
-                                  })
-                    })
-
-          })
-
-          //GA ADA NAMANYA
-          .catch(function (err){
-            db.Movie.findAll()
-                    .then(function (_movies){
-                      res.redirect('index', { movies:_movies});
-                        })
-          })
-
+router.post('/findbytag', function(req, res, next) {
+  db.Movie.findById(req.params.id)
+          .then(function (_movie){
+              db.User.findAll()
+                     .then(function(_users){
+                       res.render('vote', { movie : _movie, users : _users});
+                     })
+    })
 });
 
 module.exports = router;

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IMDB</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <h1 style="text-align:center"><%= tittle %></h1>
+    <hr>
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Change</th>
+        </thead>
+        <tbody>
+          <% movies.forEach( function(movie) { %>
+          <tr>
+              <td><%= movie.id %></td>
+              <td><a href="/votes/<%= movie.id %>"><%= movie.judul %></a></td>
+              <td>
+                <input type="submit" name="" value="Edit" onclick="location.href='/update/<%= movie.id%>'">
+                <a href="/delete/<%= movie.id%>"><input type="submit" name="" value="Remove" onclick="return confirm('Are You Sure')"></a>
+              </td>
+            <% }) %>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <form class="" action="/create.html" method="post"> -->
+      <button type="submit" name="button" onclick="window.location.href='/create';">Create</button>
+
+    <!-- </form> -->
+</body>
+
+</html>

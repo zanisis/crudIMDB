@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IMDB</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <h1 style="text-align:center">IMDB Lokal</h1>
+      <form action="/findbytag" method="post">
+          Search Film By Tag
+          <select name="tagfilm">
+          <% genres.forEach (function (genre){ %>
+              <option value=<%= genre.id %>><%= genre.genre %></option>
+          <% }) %>
+          </select>
+          <input type="submit" value="FIND">
+      </form>
+    <hr>
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Judul Movie</th>
+
+        </thead>
+        <tbody>
+          <% movieGenres.forEach((movieGenre) => { %>
+          <tr>
+              <td><%= movieGenre.Movie.id %></td>
+              <td><%= movieGenre.Movie.judul %></td>
+
+
+
+
+
+            </tr>
+          <% }) %>
+        </tbody>
+    </table>
+</body>
+
+</html>

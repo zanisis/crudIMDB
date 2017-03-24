@@ -11,9 +11,14 @@
     <%=   movie.id %></br>
     <%=   movie.judul %></br>
     <%=   movie.isi %></br></br></br>
-    <form action="/vote/add/<%= movie.id %>" method="post">
+    <form action="/votes/<%= movie.id %>" method="post">
       <name="movieId" value= <%   movie.id %>>
-      Input Your Name : <input type"text" name="inputname"></br></br>
+
+      Nama Penilai : <select name="inputname">
+        <% users.forEach (function (user){ %>
+            <option value=<%= user.id %>><%= user.name %></option>
+        <% }) %>
+      </select></br></br>
       Input Your Rating : <input type="radio" name="vote" value=5>5
       <input type="radio" name="vote" value=4>4
       <input type="radio" name="vote" value=3>3
