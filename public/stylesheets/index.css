@@ -14,10 +14,17 @@ div.table-title {
   max-width: 600px;
   padding:5px;
   width: 100%;
+  margin-top: 4%;
+}
+
+.button-sucess{
+  color: #fff;
+  background-color: #991D57;
+  border-color: #4cae4c;
 }
 
 .table-title h3 {
-   color: #fafafa;
+   color: #9966ff;
    font-size: 30px;
    font-weight: 400;
    font-style:normal;
@@ -50,7 +57,7 @@ th {
   font-size:23px;
   font-weight: 100;
   padding:24px;
-  text-align:left;
+  text-align:center;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   vertical-align:middle;
 }
@@ -115,9 +122,14 @@ td {
   border-right: 1px solid #C1C3D1;
 }
 
+
+
+
 td:last-child {
   border-right: 0px;
 }
+
+
 
 th.text-left {
   text-align: left;
@@ -141,4 +153,13 @@ td.text-center {
 
 td.text-right {
   text-align: right;
+}
+
+input.hover-vote {
+	background-color: #FFF;
+  color: #993399;
+}
+
+input.hover-vote:hover {
+	background-color: #00ff80;
 }

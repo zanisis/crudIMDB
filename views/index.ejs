@@ -2,58 +2,81 @@
 <html>
 
 <head>
-    <title>IMDB</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <html lang="en">
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <title>IMDB</title>
+    <%# <link rel='stylesheet' href='/stylesheets/style.css' />%>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <%# <link rel='stylesheet' href='/stylesheets/bootstrap/bootstrap.css' />%>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <%# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>%>
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+
 </head>
 
 <body>
-    <html lang="en">
-
-    <head>
-        <meta charset="utf-8" />
-        <title>Table Style</title>
-        <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
-    </head>
-
-    <body>
-        <div class="table-title">
-            <h3>List Movies Table</h3>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"></a>
         </div>
-        <table class="table-fill">
-            <thead>
-                <tr>
-                    <th class="text-left">No</th>
-                    <th class="text-left">Movies</th>
-                    <th class="text-left">Rating</th>
-                    <th class="text-left" style="text-align:center">Vote</th>
-                </tr>
-            </thead>
-            <tbody class="table-hover">
-                <%let count = 1%>
-                    <% movies.forEach((movie) => { %>
-                        <tr>
-                            <td class="text-left">
-                                <%=count%>
-                            </td>
-                            <td class="text-left">
-                                <%= movie.judul %>
-                            </td>
-                            <% if(movie.rata) { %>
-                                <td>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form action="/login" method="post"class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" name="username" placeholder="Username" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn button-sucess">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+    <div class="table-title">
+        <h3>List Movies Table</h3>
+    </div>
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-center">No</th>
+                <th class="text-center">Movies</th>
+                <th class="text-center">Rating</th>
+                <th class="text-center">Vote</th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            <%let count = 1%>
+                <% movies.forEach((movie) => { %>
+                    <tr>
+                        <td class="text-center">
+                            <%=count%>
+                        </td>
+                        <td class="text-center">
+                            <%= movie.judul %>
+                        </td>
+                        <% if(movie.rata) { %>
+                            <td class="text-center">
                                 <%= movie.rata.toFixed(1) %>
-                                </td>
+                            </td>
                             <%} else { %>
-                                <td>0</td>
-                            <%}%>
-                                <td class="text-left" style="text-align:center"><input type="submit" name="" value="Gift Vote" onclick="location.href='/votes/<%=movie.id%>';"></td>
-                        </tr>
-                        <%count++}) %>
+                                <td class="text-center">0</td>
+                                <%}%>
+                                    <td class="text-center"><input class="hover-vote" type="submit" name="" value="Gift Vote" onclick="location.href='/votes/<%=movie.id%>';"></td>
+                    </tr>
+                    <%count++}) %>
+<%# %>
+        </tbody>
+    </table>
+</body>
 
-            </tbody>
-        </table>
-    </body>
-
-    </html>
+</html>

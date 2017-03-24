@@ -24,3 +24,11 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+.hover-vote {
+	background-color: #FFF;
+}
+
+.hover-vote:hover {
+	background-color: rgb(255, 255, 77);
+}

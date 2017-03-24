@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html style="background-color: rgba(236, 181, 62, 0.95);">
 
 <head>
     <title>IMDB</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <%# <link rel='stylesheet' href='/stylesheets/style.css' />%>
+    <link rel='stylesheet' href='/stylesheets/form.css' />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </head>
-
 <body>
-    <h1 style="text-align:center"><%= tittle %></h1>
-    <hr>
-    <form action="/update/<%= movie.id %>" method="post">
-        Tittle Film:<br>
-        <input size="40" type="text" name="tittle" value='<%= movie.judul%>' placeholder="input film"><br>
-        Description:<br>
-        <textarea name="desc" rows="8" cols="40"><%= movie.isi%></textarea><br>
-        <button type="submit" name="submit">Submit</button>
-    </form>
+  <div id="contact-form" style="left: 56%; background-color:rgb(255, 136, 77);">
+	  <div>
+		   <h1 class="required">Your on !!</h1>
+		   <h4 class="required"><%=tittle%></h4>
+	 </div>
+	   <form method="post" action="/create">
+			<div>
+		      <label for="name">
+		      	<span class="required">Film: *</span>
+		      	<input type="text" id="name" name="tittle" value="" placeholder="Tittle Film" tabindex="1" autofocus="autofocus" />
+		      </label>
+			</div>
+      <div>
+          <label for="message">
+            <span class="required">Synopsis: *</span>
+            <textarea id="message" name="desc" placeholder="Input Your Synopsis" tabindex="5" ></textarea>
+          </label>
+      </div>
+			<div>
+		      <button name="submit" type="submit" id="submit" >SEND</button>
+			</div>
+		</form>
+	</div>
 </body>
+
 </html>

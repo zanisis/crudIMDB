@@ -52,6 +52,7 @@ router.get('/admin', function(req, res, next) {
 router.get('/create', function(req, res, next) {
 res.render('create', {tittle: 'Create Movie'})
 });
+
 router.post('/create',function (req, res, next) {
   db.Movie.create({
     judul: req.body.tittle,

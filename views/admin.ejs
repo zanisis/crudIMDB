@@ -5,6 +5,8 @@
     <title>IMDB</title>
     <link rel='stylesheet' href='/stylesheets/admin.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -20,17 +22,16 @@
             <a class="navbar-brand">Admin Teritory</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <form action="/" class="navbar-form navbar-right">
-
+            <form method="get" action="/logout" class="navbar-form navbar-right">
               <button type="submit" class="btn btn-success">Logout</button>
             </form>
-          </div><!--/.navbar-collapse -->
+          </div>
+  <!--/.navbar-collapse -->
         </div>
       </nav>
       <br>
       <div id="demo">
         <h1>Table Movies</h1>
-
         <!-- Responsive table starts here -->
         <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
         <div class="table-responsive-vertical shadow-z-1">
@@ -50,9 +51,7 @@
               <tr>
                 <td data-title="ID" style="text-align:center"><%=count%></td>
                 <td data-title="Name" style="text-align:center"><%= movie.judul %></td>
-        <!--  <td data-title="Link" style="text-align:center">
-                  <a rel="nofollow" rel="noreferrer"href="/votes/<%= movie.id %>"><input type="submit" name="" value="Vote"></a>
-                </td> -->
+
                 <td data-title="Status" style="text-align:center">
                   <input type="submit" name="" value="Edit" onclick="location.href='/update/<%= movie.id%>'">
                   <a href="/delete/<%= movie.id%>"><input type="submit" name="" value="Remove" onclick="return confirm('Are You Sure')"></a>
@@ -62,15 +61,9 @@
             </tbody>
           </table>
         </div>
-        <button style="float:right" type="submit" name="button" onclick="window.location.href='/create';">Add Movie</button>
-
+      <button style="float:right" type="submit" name="button" onclick="window.location.href='/create';">Add Movie</button>
       <!-- Table Constructor change table classes, you don't need it in your project -->
-      </div>
-      <br>
-
-
-
-
+    </div>
 </body>
 
 </html>
