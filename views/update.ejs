@@ -15,17 +15,17 @@
 		   <h1 class="required">Your on !!</h1>
 		   <h4 class="required"><%=tittle%></h4>
 	 </div>
-	   <form method="post" action="/create">
+	   <form method="post" action="/update/<%= movie.id %>">
 			<div>
 		      <label for="name">
 		      	<span class="required">Film: *</span>
-		      	<input type="text" id="name" name="tittle" value="" placeholder="Tittle Film" tabindex="1" autofocus="autofocus" />
+		      	<input type="text" id="name" name="tittle" value="<%= movie.judul %>"/>
 		      </label>
 			</div>
       <div>
           <label for="message">
             <span class="required">Synopsis: *</span>
-            <textarea id="message" name="desc" placeholder="Input Your Synopsis" tabindex="5" ></textarea>
+            <textarea id="message" name="desc" placeholder="" tabindex="5" ><%= movie.isi %></textarea>
           </label>
       </div>
 			<div>
