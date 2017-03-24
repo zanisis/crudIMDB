@@ -107,6 +107,10 @@ router.post('/update/:id',function (req, res, next) {
 
 //NYARI TAG
 router.post('/findbytag',function (req, res, next) {
+  if(req.body.tagfilm==0){
+    res.redirect('/');
+  }
+  else {
     db.MovieGenre.findAll( {
       where : { GenreId : req.body.tagfilm },
       include : [ db.Movie ]
@@ -116,10 +120,11 @@ router.post('/findbytag',function (req, res, next) {
 
               db.Genre.findAll()
               .then(function (_genres){
-                res.render('listmovietag', { movieGenres : _movieGenres, genres : _genres })
+                res.render('listmovietag', { movieGenres : _movieGenres, genres : _genres, selected : req.body.tagfilm })
               })
             })
-  })
+  }
+})
 
 
 
