@@ -13,6 +13,9 @@
       <input size="40" type="text" name="tittle" value="" placeholder="Tittle Film"><br>
       Description:<br>
       <textarea name="desc" rows="8" cols="40"></textarea><br>
+      <% genres.forEach (function (genre){ %>
+        <input type="checkbox" name="genreCheckBox" value=<%=genre.id %> > <%=genre.genre%> <br>
+      <% }) %>
       <button type="submit" name="button">Submit</button>
     </form>
 

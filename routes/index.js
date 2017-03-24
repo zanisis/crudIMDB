@@ -54,7 +54,11 @@ router.get('/admin', function(req, res, next) {
 });
 
 router.get('/create', function(req, res, next) {
-    res.render('create', {tittle: 'Create Movie'})
+  db.Genre.findAll()
+  .then((_genres)=>{
+    res.render('create', {tittle: 'Create Movie', genres :_genres})
+  })
+
 });
 
 
@@ -64,8 +68,22 @@ router.post('/create',function (req, res, next) {
     judul: req.body.tittle,
     isi: req.body.desc
   })
-    .then(()=>{
-      res.redirect('/admin')
+  .then((ins)=>{
+      let movie_id = ins.id;
+
+      let arrMovieGenre = [];
+      for(let i=0;i<req.body.genreCheckBox.length;i++){
+        arrMovieGenre.push({
+          MovieId : movie_id,
+          GenreId : req.body.genreCheckBox[i]
+        })
+      }
+
+      db.MovieGenre.bulkCreate(arrMovieGenre)
+      .then(function(){
+        res.redirect('/')
+      })
+      // res.send(arrMovieGenre)
     })
 })
 
