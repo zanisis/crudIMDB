@@ -101,4 +101,8 @@ router.post('/update/:id',function (req, res, next) {
 router.get('/admin2',function (req, res, next) {
   res.render('admin2')
 })
+
+router.get('/test', function(req, res, next) {
+res.render('test', {tittle: 'Create Movie'})
+});
 module.exports = router;
